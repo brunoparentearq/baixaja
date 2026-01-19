@@ -1,18 +1,17 @@
-# Estágio de construção
-FROM node:20-alpine AS builder
+FROM node:20-alpine
 WORKDIR /app
+
+# Instala dependências primeiro para ganhar velocidade
 COPY package*.json ./
 RUN npm install
-COPY . .
-RUN npm run build
 
-# Estágio de execução
-FROM node:20-alpine AS runner
-WORKDIR /app
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-# COPY --from=builder /app/public ./public 
+# Copia o resto dos arquivos
+COPY . .
+
+# Desativa a coleta de dados do Next.js para evitar travamentos no build
+ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN npm run build
 
 EXPOSE 3000
 CMD ["npm", "start"]
