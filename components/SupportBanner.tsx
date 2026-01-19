@@ -5,7 +5,7 @@ export default function SupportBanner({ softwareName }: { softwareName?: string 
     ? `Olá! Gostaria de suporte para a instalação do ${softwareName}. Vi que você tem 20 anos de experiência.`
     : "Olá! Gostaria de informações sobre o suporte técnico remoto.";
   
-  const whatsappUrl = `https://wa.me/55SEUNUMERO?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/55S91984528746?text=${encodeURIComponent(message)}`;
 
   return (
     <div className="my-8 p-6 bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg text-white">
